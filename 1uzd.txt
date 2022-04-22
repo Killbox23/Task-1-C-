@@ -1,0 +1,38 @@
+using System;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Inpute hours:");//
+            double hours = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Input minutes:");//
+            double minutes = Convert.ToDouble(Console.ReadLine());
+            if (hours > 24)
+            {
+                Console.WriteLine("Wrong hours input");
+                System.Environment.Exit(0);
+            }
+            else if (minutes > 60)
+            {
+                Console.WriteLine("Wrong minutes input");
+                System.Environment.Exit(0);
+            }
+            if (hours > 12)
+            {
+                hours = hours - 12;
+            }
+            //every 60 minutes minute arrow moves 360 degrees 360/60=6 degrees per minute
+            //every 12 hours hour arrow moves 360 degrees 360/12=30 degrees per hour but we also need to keep in mind that hour arrow turns every minute so 360/720=0.5 degrees per minute
+            double minute_arrow = 6 * minutes;
+            double hour_arrow = 0.5 * (hours * 60 + minutes);
+            double result = Math.Abs(hour_arrow - minute_arrow);//since minute arrow can be higher then hour arrow and my result will be negative
+            if (360 - result < result)
+                Console.WriteLine(360-result);
+            else
+                Console.WriteLine(result);
+        }
+    }
+}
